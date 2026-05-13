@@ -1,0 +1,911 @@
+#   
+<!DOCTYPE html>  
+<html lang="tr">  
+<head>  
+  <meta charset="UTF-8"/>  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>Karaağaç Tarım – Gübre & Zirai İlaç Uzmanları</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>  
+  <style>  
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }  
+  
+    :root {  
+      --cream:       #f5f1ea;  
+      --white:       #ffffff;  
+      --green-dark:  #2e5c28;  
+      --green-mid:   #4e8a44;  
+      --green-light: #7ab86c;  
+      --green-pale:  #e8f2e5;  
+      --bordo:       #8c1f32;  
+      --bordo-light: #b03448;  
+      --text-dark:   #1a1a1a;  
+      --text-mid:    #4a4a4a;  
+      --text-light:  #888;  
+      --border:      #ddd8cf;  
+    }  
+  
+    html { scroll-behavior: smooth; }  
+    body {  
+      font-family: 'DM Sans', sans-serif;  
+      background: var(--cream);  
+      color: var(--text-dark);  
+      overflow-x: hidden;  
+    }  
+  
+    /* **───** NAV **───** */  
+    nav {  
+      position: fixed; top:0; left:0; right:0; z-index:200;  
+      display: flex; align-items: center; justify-content: space-between;  
+      padding: 0 5%; height: 70px;  
+      background: rgba(245,241,234,0.95);  
+      backdrop-filter: blur(12px);  
+      border-bottom: 1px solid var(--border);  
+    }  
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }  
+    .nav-logo svg { width:48px; height:48px; }  
+    .nav-brand { display:flex; flex-direction:column; line-height:1.1; }  
+    .nav-brand .nb1 {  
+      font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:700;  
+      color:var(--green-dark); letter-spacing:.02em;  
+    }  
+    .nav-brand .nb2 {  
+      font-size:.62rem; font-weight:400; color:var(--bordo);  
+      letter-spacing:.16em; text-transform:uppercase; margin-top:1px;  
+    }  
+    .nav-links { display:flex; gap:32px; list-style:none; }  
+    .nav-links a {  
+      text-decoration:none; font-size:.84rem; font-weight:400;  
+      color:var(--text-mid); letter-spacing:.04em; transition:color .2s;  
+    }  
+    .nav-links a:hover { color:var(--green-dark); }  
+    .nav-cta {  
+      background:var(--green-dark) !important; color:#fff !important;  
+      padding:8px 20px; border-radius:4px; transition:background .2s !important;  
+    }  
+    .nav-cta:hover { background:var(--green-mid) !important; }  
+  
+    /* **───** HERO **───** */  
+    .hero {  
+      min-height:100vh;  
+      display:flex; flex-direction:column; align-items:center; justify-content:center;  
+      padding:120px 5% 80px; position:relative; overflow:hidden;  
+      background: linear-gradient(155deg,#fff 0%,var(--green-pale) 55%,#e2ecdf 100%);  
+    }  
+    .hero-dots {  
+      position:absolute; inset:0; pointer-events:none; opacity:.045;  
+      background-image: radial-gradient(circle, var(--green-dark) 1px, transparent 1px);  
+      background-size: 26px 26px;  
+    }  
+    .hero-badge {  
+      display:inline-flex; align-items:center; gap:8px;  
+      background:var(--green-pale); border:1px solid var(--green-light);  
+      padding:5px 16px; border-radius:100px;  
+      font-size:.72rem; font-weight:500; color:var(--green-dark);  
+      letter-spacing:.14em; text-transform:uppercase;  
+      margin-bottom:28px;  
+      animation: fadeUp .8s ease both;  
+    }  
+    .hero-badge::before {  
+      content:''; width:6px; height:6px; border-radius:50%; background:var(--green-mid);  
+    }  
+    .hero-logo-big {  
+      width:130px; height:130px; margin-bottom:24px;  
+      animation: fadeUp .8s ease .1s both;  
+      filter: drop-shadow(0 6px 20px rgba(46,92,40,.18));  
+    }  
+    h1 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:clamp(2.6rem,6vw,5.2rem); font-weight:700;  
+      line-height:1.1; text-align:center; color:var(--green-dark);  
+      animation: fadeUp .9s ease .2s both;  
+    }  
+    h1 em { font-style:italic; color:var(--bordo); }  
+  
+    .hero-sub {  
+      font-size:clamp(.9rem,2vw,1.05rem); color:var(--text-mid);  
+      font-weight:300; text-align:center; max-width:520px;  
+      line-height:1.85; margin-top:18px;  
+      animation: fadeUp .9s ease .32s both;  
+    }  
+    .hero-pills {  
+      display:flex; gap:10px; margin-top:28px; flex-wrap:wrap; justify-content:center;  
+      animation: fadeUp .9s ease .4s both;  
+    }  
+    .hero-pill {  
+      background:#fff; border:1px solid var(--border);  
+      padding:7px 16px; border-radius:100px;  
+      font-size:.78rem; color:var(--text-mid); font-weight:400;  
+    }  
+    .hero-pill strong { color:var(--green-dark); font-weight:600; }  
+  
+    .hero-actions {  
+      display:flex; gap:14px; margin-top:36px;  
+      animation: fadeUp .9s ease .48s both;  
+      flex-wrap:wrap; justify-content:center;  
+    }  
+    .btn-primary {  
+      background:var(--green-dark); color:#fff;  
+      padding:13px 30px; border-radius:6px;  
+      font-size:.87rem; font-weight:500; text-decoration:none;  
+      letter-spacing:.04em; border:none; cursor:pointer;  
+      transition:background .25s, transform .2s;  
+    }  
+    .btn-primary:hover { background:var(--green-mid); transform:translateY(-1px); }  
+    .btn-outline {  
+      background:transparent; color:var(--green-dark);  
+      padding:13px 30px; border-radius:6px;  
+      font-size:.87rem; font-weight:500; text-decoration:none;  
+      border:1.5px solid var(--green-dark); transition:all .25s;  
+    }  
+    .btn-outline:hover { background:var(--green-dark); color:#fff; }  
+  
+    /* **───** STATS **───** */  
+    .stats {  
+      background:var(--green-dark); color:#fff;  
+      display:grid; grid-template-columns:repeat(4,1fr);  
+    }  
+    .stat-item {  
+      padding:48px 28px; border-right:1px solid rgba(255,255,255,.1);  
+      text-align:center;  
+    }  
+    .stat-item:last-child { border-right:none; }  
+    .stat-num {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:2.8rem; font-weight:700; color:var(--green-light); line-height:1;  
+    }  
+    .stat-label { font-size:.78rem; color:rgba(255,255,255,.65); margin-top:8px; }  
+  
+    /* **───** SHARED **───** */  
+    section { padding:96px 5%; }  
+    .section-tag {  
+      display:inline-block; font-size:.68rem; font-weight:500;  
+      letter-spacing:.18em; text-transform:uppercase;  
+      color:var(--bordo); margin-bottom:10px;  
+    }  
+    h2 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:clamp(1.9rem,4vw,3rem); font-weight:700;  
+      color:var(--green-dark); line-height:1.2;  
+    }  
+    .section-desc {  
+      color:var(--text-mid); font-size:.93rem; line-height:1.85;  
+      max-width:540px; margin-top:14px; font-weight:300;  
+    }  
+  
+    /* **───** HAKKIMIZDA **───** */  
+    .about { background:var(--white); display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }  
+    .about-visual {  
+      background:var(--green-pale); border-radius:6px;  
+      padding:56px; display:flex; align-items:center; justify-content:center;  
+      position:relative;  
+    }  
+    .about-visual svg { width:200px; height:200px; }  
+    .about-float {  
+      position:absolute; bottom:-18px; right:-18px;  
+      background:var(--bordo); color:#fff;  
+      padding:18px 24px; border-radius:4px; text-align:center;  
+    }  
+    .about-float strong {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:2rem; font-weight:700; display:block;  
+    }  
+    .about-float span { font-size:.68rem; letter-spacing:.1em; opacity:.85; }  
+    .about-list { list-style:none; margin-top:26px; display:flex; flex-direction:column; gap:12px; }  
+    .about-list li {  
+      display:flex; align-items:flex-start; gap:12px;  
+      font-size:.88rem; color:var(--text-mid); line-height:1.65;  
+    }  
+    .about-list li::before {  
+      content:''; flex-shrink:0; width:16px; height:16px; margin-top:3px;  
+      border-radius:50%; background:var(--green-pale); border:2px solid var(--green-mid);  
+    }  
+  
+    /* **───** ÜRÜN KATEGORİLERİ **───** */  
+    .categories { background:var(--cream); }  
+    .categories-header { text-align:center; margin-bottom:56px; }  
+    .categories-header .section-desc { margin:14px auto 0; }  
+  
+    .cat-tabs {  
+      display:flex; gap:0; border:1.5px solid var(--border);  
+      border-radius:8px; overflow:hidden;  
+      max-width:560px; margin:0 auto 48px; background:#fff;  
+    }  
+    .cat-tab {  
+      flex:1; padding:13px 10px; text-align:center;  
+      font-size:.82rem; font-weight:500; cursor:pointer;  
+      border:none; background:transparent; color:var(--text-mid);  
+      transition:all .22s; letter-spacing:.04em;  
+    }  
+    .cat-tab.active {  
+      background:var(--green-dark); color:#fff;  
+    }  
+    .cat-tab:not(.active):hover { background:var(--green-pale); color:var(--green-dark); }  
+  
+    .cat-panel { display:none; }  
+    .cat-panel.active { display:grid; }  
+  
+    /* Gübre grid */  
+    .gubre-grid {  
+      grid-template-columns: repeat(3,1fr); gap:20px;  
+    }  
+    .gubre-card {  
+      background:var(--white); border:1px solid var(--border);  
+      border-radius:6px; padding:32px 26px;  
+      transition:all .25s;  
+    }  
+    .gubre-card:hover {  
+      transform:translateY(-4px);  
+      box-shadow:0 14px 36px rgba(46,92,40,.09);  
+      border-color:var(--green-light);  
+    }  
+    .gubre-icon {  
+      width:46px; height:46px; background:var(--green-pale);  
+      border-radius:10px; display:flex; align-items:center; justify-content:center;  
+      margin-bottom:20px;  
+    }  
+    .gubre-icon svg { width:24px; height:24px; stroke:var(--green-dark); }  
+    .gubre-card h3 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:1.25rem; font-weight:700; color:var(--green-dark); margin-bottom:10px;  
+    }  
+    .gubre-card p { font-size:.82rem; color:var(--text-mid); line-height:1.8; font-weight:300; }  
+    .gubre-tag {  
+      display:inline-block; margin-top:14px;  
+      background:var(--green-pale); color:var(--green-dark);  
+      padding:3px 10px; border-radius:100px;  
+      font-size:.68rem; letter-spacing:.08em;  
+    }  
+  
+    /* Zirai ilaç grid */  
+    .ilac-grid {  
+      grid-template-columns: repeat(3,1fr); gap:20px;  
+    }  
+    .ilac-card {  
+      background:var(--white); border:1px solid var(--border);  
+      border-radius:6px; padding:32px 26px;  
+      transition:all .25s; border-top:3px solid var(--bordo);  
+    }  
+    .ilac-card:hover {  
+      transform:translateY(-4px);  
+      box-shadow:0 14px 36px rgba(140,31,50,.08);  
+    }  
+    .ilac-icon {  
+      width:46px; height:46px; background:#fdf0f2;  
+      border-radius:10px; display:flex; align-items:center; justify-content:center;  
+      margin-bottom:20px;  
+    }  
+    .ilac-icon svg { width:24px; height:24px; stroke:var(--bordo); }  
+    .ilac-card h3 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:1.25rem; font-weight:700; color:var(--text-dark); margin-bottom:10px;  
+    }  
+    .ilac-card p { font-size:.82rem; color:var(--text-mid); line-height:1.8; font-weight:300; }  
+    .ilac-tag {  
+      display:inline-block; margin-top:14px;  
+      background:#fdf0f2; color:var(--bordo);  
+      padding:3px 10px; border-radius:100px;  
+      font-size:.68rem; letter-spacing:.08em;  
+    }  
+  
+    /* **───** HİZMETLER **───** */  
+    .services { background:var(--white); }  
+    .services-header { margin-bottom:52px; }  
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }  
+    .service-card {  
+      background:var(--cream); border:1px solid var(--border);  
+      border-radius:6px; padding:36px 28px; transition:all .25s; cursor:default;  
+    }  
+    .service-card:hover {  
+      transform:translateY(-3px);  
+      box-shadow:0 12px 32px rgba(46,92,40,.08);  
+      border-color:var(--green-light); background:#fff;  
+    }  
+    .svc-icon {  
+      width:48px; height:48px; background:var(--green-pale);  
+      border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px;  
+    }  
+    .svc-icon svg { width:24px; height:24px; stroke:var(--green-dark); }  
+    .service-card h3 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:1.3rem; font-weight:700; color:var(--green-dark); margin-bottom:10px;  
+    }  
+    .service-card p { font-size:.83rem; color:var(--text-mid); line-height:1.8; font-weight:300; }  
+  
+    /* **───** NEDEN KARAAĞAÇ **───** */  
+    .why {  
+      background:linear-gradient(140deg, var(--green-dark) 0%, #234e1e 100%);  
+      color:#fff;  
+    }  
+    .why-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }  
+    .why h2 { color:#fff; }  
+    .why .section-tag { color:var(--green-light); }  
+    .why .section-desc { color:rgba(255,255,255,.68); }  
+    .why-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; }  
+    .why-card {  
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11);  
+      border-radius:8px; padding:26px 20px; transition:background .25s;  
+    }  
+    .why-card:hover { background:rgba(255,255,255,.13); }  
+    .why-num {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:2.2rem; font-weight:700; color:var(--green-light); line-height:1;  
+    }  
+    .why-card h4 { font-size:.85rem; font-weight:500; color:#fff; margin:9px 0 5px; }  
+    .why-card p { font-size:.77rem; color:rgba(255,255,255,.58); line-height:1.7; }  
+  
+    /* **───** İLETİŞİM **───** */  
+    .contact { background:var(--cream); }  
+    .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }  
+    .contact-info { display:flex; flex-direction:column; gap:26px; margin-top:26px; }  
+    .contact-item { display:flex; gap:14px; align-items:flex-start; }  
+    .c-icon {  
+      width:42px; height:42px; flex-shrink:0; background:var(--green-pale);  
+      border-radius:10px; display:flex; align-items:center; justify-content:center;  
+    }  
+    .c-icon svg { width:19px; height:19px; stroke:var(--green-dark); }  
+    .contact-item strong {  
+      display:block; font-size:.7rem; letter-spacing:.1em;  
+      text-transform:uppercase; color:var(--text-light); margin-bottom:3px;  
+    }  
+    .contact-item span { font-size:.88rem; color:var(--text-dark); line-height:1.65; }  
+  
+    .contact-form {  
+      background:var(--white); border:1px solid var(--border);  
+      border-radius:8px; padding:40px;  
+    }  
+    .contact-form h3 {  
+      font-family:'Cormorant Garamond',serif;  
+      font-size:1.55rem; font-weight:700; color:var(--green-dark); margin-bottom:22px;  
+    }  
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }  
+    .form-group { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }  
+    .form-group label { font-size:.72rem; font-weight:500; letter-spacing:.06em; color:var(--text-mid); }  
+    .form-group input, .form-group select, .form-group textarea {  
+      border:1.5px solid var(--border); border-radius:6px;  
+      padding:10px 13px; font-family:'DM Sans',sans-serif;  
+      font-size:.86rem; color:var(--text-dark);  
+      background:var(--cream); outline:none; transition:border-color .2s;  
+    }  
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {  
+      border-color:var(--green-mid); background:#fff;  
+    }  
+    .form-group textarea { resize:vertical; min-height:100px; }  
+    .form-submit {  
+      width:100%; padding:13px;  
+      background:var(--green-dark); color:#fff;  
+      border:none; border-radius:6px;  
+      font-family:'DM Sans',sans-serif;  
+      font-size:.87rem; font-weight:500; cursor:pointer;  
+      letter-spacing:.04em; transition:background .25s; margin-top:2px;  
+    }  
+    .form-submit:hover { background:var(--green-mid); }  
+  
+    /* **───** HARİTA **───** */  
+    .map-wrap { padding:0; }  
+    .map-wrap iframe { width:100%; height:360px; border:none; display:block; filter:saturate(.65); }  
+  
+    /* **───** FOOTER **───** */  
+    footer {  
+      background:#111; color:rgba(255,255,255,.5);  
+      padding:44px 5%;  
+      display:flex; justify-content:space-between; align-items:center;  
+      flex-wrap:wrap; gap:18px;  
+    }  
+    .footer-brand { display:flex; align-items:center; gap:12px; }  
+    .footer-brand svg { width:40px; height:40px; }  
+    .fb-text .fb1 {  
+      display:block; font-family:'Cormorant Garamond',serif;  
+      font-size:1.05rem; font-weight:700; color:#fff;  
+    }  
+    .fb-text .fb2 { font-size:.66rem; color:rgba(255,255,255,.38); letter-spacing:.1em; }  
+    footer p { font-size:.76rem; line-height:1.7; }  
+  
+    /* **───** ANIMATIONS **───** */  
+    @keyframes fadeUp {  
+      from { opacity:0; transform:translateY(22px); }  
+      to   { opacity:1; transform:translateY(0); }  
+    }  
+  
+    /* **───** RESPONSIVE **───** */  
+    @media(max-width:960px){  
+      .stats { grid-template-columns:repeat(2,1fr); }  
+      .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }  
+      .about,.contact-inner,.why-inner { grid-template-columns:1fr; gap:44px; }  
+      .services-grid,.gubre-grid,.ilac-grid { grid-template-columns:1fr 1fr; }  
+      .why-cards { grid-template-columns:1fr; }  
+      .nav-links { display:none; }  
+    }  
+    @media(max-width:560px){  
+      .services-grid,.gubre-grid,.ilac-grid { grid-template-columns:1fr; }  
+      .form-row { grid-template-columns:1fr; }  
+      .about-float { position:static; margin-top:14px; }  
+      .cat-tabs { flex-direction:column; border-radius:6px; }  
+    }  
+  </style>  
+</head>  
+<body>  
+  
+<!-- **═══** NAV **═══** -->  
+<nav>  
+  <a href="#" class="nav-logo">  
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">  
+      <g stroke="#2e5c28" stroke-width="2.2" stroke-linecap="round">  
+        <line x1="50" y1="8"  x2="50" y2="2"/>  
+        <line x1="63" y1="11" x2="66" y2="5"/>  
+        <line x1="37" y1="11" x2="34" y2="5"/>  
+        <line x1="73" y1="19" x2="77" y2="14"/>  
+        <line x1="27" y1="19" x2="23" y2="14"/>  
+        <line x1="79" y1="30" x2="85" y2="27"/>  
+        <line x1="21" y1="30" x2="15" y2="27"/>  
+      </g>  
+      <path d="M28 38 A22 22 0 0 1 72 38Z" fill="#4e8a44"/>  
+      <line x1="18" y1="38" x2="82" y2="38" stroke="#2e5c28" stroke-width="2.2"/>  
+      <ellipse cx="20" cy="28" rx="5" ry="10" fill="#2e5c28"/>  
+      <rect x="19" y="37" width="2" height="6" fill="#2e5c28"/>  
+      <path d="M10 45 Q30 38 50 42 Q70 46 90 40 L90 52 Q70 58 50 54 Q30 50 10 56Z" fill="#2e5c28"/>  
+      <path d="M10 54 Q35 48 60 54 Q75 58 90 52 L90 62 Q75 68 60 64 Q35 58 10 64Z" fill="#8c1f32" opacity=".85"/>  
+      <path d="M10 62 Q35 58 65 63 Q78 67 90 62 L90 70 Q78 75 65 71 Q35 66 10 72Z" fill="#8c1f32" opacity=".6"/>  
+    </svg>  
+    <div class="nav-brand">  
+      <span class="nb1">Karaağaç Tarım</span>  
+      <span class="nb2">Gübre & Zirai İlaç</span>  
+    </div>  
+  </a>  
+  <ul class="nav-links">  
+    <li><a href="#hakkimizda">Hakkımızda</a></li>  
+    <li><a href="#urunler">Ürünler</a></li>  
+    <li><a href="#hizmetler">Hizmetler</a></li>  
+    <li><a href="#iletisim" class="nav-cta">İletişim</a></li>  
+  </ul>  
+</nav>  
+  
+<!-- **═══** HERO **═══** -->  
+<section class="hero">  
+  <div class="hero-dots"></div>  
+  <div class="hero-badge">Mersin'in Güvenilir Tarım Partneri</div>  
+  
+  <svg class="hero-logo-big" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">  
+    <g stroke="#2e5c28" stroke-width="2.2" stroke-linecap="round">  
+      <line x1="50" y1="8"  x2="50" y2="2"/>  
+      <line x1="63" y1="11" x2="66" y2="5"/>  
+      <line x1="37" y1="11" x2="34" y2="5"/>  
+      <line x1="73" y1="19" x2="77" y2="14"/>  
+      <line x1="27" y1="19" x2="23" y2="14"/>  
+      <line x1="79" y1="30" x2="85" y2="27"/>  
+      <line x1="21" y1="30" x2="15" y2="27"/>  
+    </g>  
+    <path d="M28 38 A22 22 0 0 1 72 38Z" fill="#4e8a44"/>  
+    <line x1="18" y1="38" x2="82" y2="38" stroke="#2e5c28" stroke-width="2.2"/>  
+    <ellipse cx="20" cy="28" rx="5" ry="10" fill="#2e5c28"/>  
+    <rect x="19" y="37" width="2" height="6" fill="#2e5c28"/>  
+    <path d="M10 45 Q30 38 50 42 Q70 46 90 40 L90 52 Q70 58 50 54 Q30 50 10 56Z" fill="#2e5c28"/>  
+    <path d="M10 54 Q35 48 60 54 Q75 58 90 52 L90 62 Q75 68 60 64 Q35 58 10 64Z" fill="#8c1f32" opacity=".85"/>  
+    <path d="M10 62 Q35 58 65 63 Q78 67 90 62 L90 70 Q78 75 65 71 Q35 66 10 72Z" fill="#8c1f32" opacity=".6"/>  
+  </svg>  
+  
+  <h1>Toprağınıza <em>Değer</em> Katıyoruz</h1>  
+  <p class="hero-sub">  
+    Karaağaç Tarım olarak gübre, bitki besleme ürünleri ve zirai ilaç satışında  
+    profesyonel çözümler sunuyor; çiftçilerimizin verimliliğini artırıyoruz.  
+  </p>  
+  <div class="hero-pills">  
+    <span class="hero-pill"><strong>🌿</strong> Bitki Besleme</span>  
+    <span class="hero-pill"><strong>🧪</strong> Gübre Satışı</span>  
+    <span class="hero-pill"><strong>🔬</strong> Zirai İlaç</span>  
+    <span class="hero-pill"><strong>📍</strong> Mersin / Akdeniz</span>  
+  </div>  
+  <div class="hero-actions">  
+    <a href="#iletisim" class="btn-primary">Bize Ulaşın</a>  
+    <a href="#urunler" class="btn-outline">Ürünlerimiz</a>  
+  </div>  
+</section>  
+  
+<!-- **═══** STATS **═══** -->  
+<div class="stats">  
+  <div class="stat-item">  
+    <div class="stat-num">15+</div>  
+    <div class="stat-label">Yıllık Deneyim</div>  
+  </div>  
+  <div class="stat-item">  
+    <div class="stat-num">500+</div>  
+    <div class="stat-label">Mutlu Çiftçi</div>  
+  </div>  
+  <div class="stat-item">  
+    <div class="stat-num">100+</div>  
+    <div class="stat-label">Ürün Çeşidi</div>  
+  </div>  
+  <div class="stat-item">  
+    <div class="stat-num">%98</div>  
+    <div class="stat-label">Müşteri Memnuniyeti</div>  
+  </div>  
+</div>  
+  
+<!-- **═══** HAKKIMIZDA **═══** -->  
+<section class="about" id="hakkimizda">  
+  <div class="about-visual">  
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">  
+      <circle cx="100" cy="100" r="88" fill="#d4e8cf" opacity=".35"/>  
+      <path d="M100 162 C100 162 58 130 58 88 C58 62 77 42 100 42 C123 42 142 62 142 88 C142 130 100 162 100 162Z" fill="#4e8a44" opacity=".8"/>  
+      <path d="M100 162 C100 162 74 124 79 82 C82 62 91 48 100 42 C109 48 118 62 121 82 C126 124 100 162 100 162Z" fill="#2e5c28"/>  
+      <line x1="100" y1="162" x2="100" y2="96" stroke="#7ab86c" stroke-width="1.8" stroke-dasharray="4 3"/>  
+      <path d="M100 162 C89 173 73 178 62 188" stroke="#7a5c30" stroke-width="2.5" stroke-linecap="round" fill="none"/>  
+      <path d="M100 162 C100 174 97 183 95 192" stroke="#7a5c30" stroke-width="2.5" stroke-linecap="round" fill="none"/>  
+      <path d="M100 162 C111 173 127 178 138 188" stroke="#7a5c30" stroke-width="2.5" stroke-linecap="round" fill="none"/>  
+      <line x1="38" y1="163" x2="162" y2="163" stroke="#7a5c30" stroke-width="2" opacity=".35"/>  
+    </svg>  
+    <div class="about-float">  
+      <strong>2009</strong>  
+      <span>Kuruluş Yılı</span>  
+    </div>  
+  </div>  
+  <div>  
+    <span class="section-tag">Hakkımızda</span>  
+    <h2>Doğayla Uyumlu,<br/>Bilimle Destekli</h2>  
+    <p class="section-desc">  
+      Mersin Akdeniz'de kurulu Karaağaç Tarım; gübre, bitki besleme ve zirai ilaç  
+      satışında uzmanlaşmış, bölgenin güvenilir tarım tedarikçisidir. Toprak sağlığına  
+      ve sürdürülebilir tarıma inandığımız için bilimsel temelli çözümler sunuyoruz.  
+    </p>  
+    <ul class="about-list">  
+      <li>Ziraat mühendisleri eşliğinde saha danışmanlığı</li>  
+      <li>Toprak ve yaprak analizi tabanlı gübre programları</li>  
+      <li>Geniş zirai ilaç ürün yelpazesi</li>  
+      <li>Organik ve biyolojik tarım çözümleri</li>  
+      <li>Satış sonrası teknik destek ve saha takibi</li>  
+    </ul>  
+    <a href="#iletisim" class="btn-primary" style="display:inline-block;margin-top:28px;">İletişime Geçin</a>  
+  </div>  
+</section>  
+  
+<!-- **═══** ÜRÜNLER **═══** -->  
+<section class="categories" id="urunler">  
+  <div class="categories-header">  
+    <span class="section-tag">Ürünlerimiz</span>  
+    <h2>Gübre & Zirai İlaç</h2>  
+    <p class="section-desc">Tarlanıza, bağınıza ve bahçenize özel geniş ürün portföyümüzle hizmetinizdeyiz.</p>  
+  </div>  
+  
+  <!-- TABS -->  
+  <div class="cat-tabs">  
+    <button class="cat-tab active" onclick="showTab('gubre',this)">🌱 Gübre & Bitki Besleme</button>  
+    <button class="cat-tab" onclick="showTab('ilac',this)">🔬 Zirai İlaçlar</button>  
+  </div>  
+  
+  <!-- GÜBRE PANELİ -->  
+  <div id="tab-gubre" class="cat-panel active gubre-grid">  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 22V12M12 12C8 9 5 6 5 6M12 12C16 9 19 6 19 6M5 6C7 4 10 3 12 3C14 3 17 4 19 6"/></svg>  
+      </div>  
+      <h3>NPK Gübreleri</h3>  
+      <p>Azot, fosfor ve potasyum içerikli dengeli formülasyonlar. Tüm bitki gruplarına uygun çeşitler.</p>  
+      <span class="gubre-tag">Makro Besin</span>  
+    </div>  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>  
+      </div>  
+      <h3>Humik & Fulvik Asit</h3>  
+      <p>Toprak yapısını iyileştiren, besin alımını ve kök gelişimini destekleyen organik kökenli ürünler.</p>  
+      <span class="gubre-tag">Toprak Düzenleyici</span>  
+    </div>  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>  
+      </div>  
+      <h3>Yaprak Gübreleri</h3>  
+      <p>Hızlı etki için tasarlanmış sıvı ve toz yaprak gübresi formülasyonları. Eksiklik belirtilerine anında müdahale.</p>  
+      <span class="gubre-tag">Foliar Besleme</span>  
+    </div>  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>  
+      </div>  
+      <h3>Mikroelement Karışımları</h3>  
+      <p>Demir, çinko, mangan, bor, bakır ve molibden içerikli özel iz element karışımları.</p>  
+      <span class="gubre-tag">Mikro Besin</span>  
+    </div>  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.5a4 4 0 01-4 4H6a4 4 0 010-8h.5A5.5 5.5 0 0117 7.5"/></svg>  
+      </div>  
+      <h3>Amino Asit Ürünler</h3>  
+      <p>Hidrolize amino asit içerikli gübreler; stres toleransını artırır, protein sentezini destekler.</p>  
+      <span class="gubre-tag">Biyostimülant</span>  
+    </div>  
+    <div class="gubre-card">  
+      <div class="gubre-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>  
+      </div>  
+      <h3>Fertigasyon Gübreleri</h3>  
+      <p>Damla sulama sistemlerine uygun, tam çözünür fertigasyon ürünleri. Tam bitki beslemesi.</p>  
+      <span class="gubre-tag">Sulama Sistemi</span>  
+    </div>  
+  </div>  
+  
+  <!-- ZİRAİ İLAÇ PANELİ -->  
+  <div id="tab-ilac" class="cat-panel ilac-grid">  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>  
+      </div>  
+      <h3>Fungusitler</h3>  
+      <p>Külleme, mildiyö, pas ve diğer mantar hastalıklarına karşı koruyucu ve tedavi edici preparatlar.</p>  
+      <span class="ilac-tag">Mantar Hastalıkları</span>  
+    </div>  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s-8-6.5-8-13a8 8 0 0116 0c0 6.5-8 13-8 13z"/><path d="M8 10c1-2 2.5-3 4-3s3 1 4 3"/></svg>  
+      </div>  
+      <h3>İnsektisitler</h3>  
+      <p>Yaprak biti, thrips, kırmızı örümcek, beyazsinekler ve diğer zararlı böceklere karşı etkin çözümler.</p>  
+      <span class="ilac-tag">Böcek İlaçları</span>  
+    </div>  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>  
+      </div>  
+      <h3>Herbisitler</h3>  
+      <p>Dar yapraklı ve geniş yapraklı yabancı otlara karşı selektif ve total etkili yabancı ot ilaçları.</p>  
+      <span class="ilac-tag">Yabancı Ot</span>  
+    </div>  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>  
+      </div>  
+      <h3>Akarisitler</h3>  
+      <p>Kırmızı örümcek ve diğer akar türlerine karşı özel formüle edilmiş akarisit preparatları.</p>  
+      <span class="ilac-tag">Akar İlaçları</span>  
+    </div>  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>  
+      </div>  
+      <h3>Bakterisitler</h3>  
+      <p>Bakteriyel hastalıklara karşı bakır bazlı ve diğer etkili madde içerikli preparatlar.</p>  
+      <span class="ilac-tag">Bakteri Hastalıkları</span>  
+    </div>  
+    <div class="ilac-card">  
+      <div class="ilac-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>  
+      </div>  
+      <h3>Biyolojik İlaçlar</h3>  
+      <p>Kimyasal kalıntı bırakmayan, organik sertifikalı üretim için uygun biyolojik kökenli preparatlar.</p>  
+      <span class="ilac-tag">Organik Tarım</span>  
+    </div>  
+  </div>  
+</section>  
+  
+<!-- **═══** HİZMETLER **═══** -->  
+<section class="services" id="hizmetler">  
+  <div class="services-header">  
+    <span class="section-tag">Hizmetlerimiz</span>  
+    <h2>Her Adımda Yanınızdayız</h2>  
+    <p class="section-desc">Ürün satışından sahada danışmanlığa kadar tam destek sunuyoruz.</p>  
+  </div>  
+  <div class="services-grid">  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 22V12M12 12C8 9 5 6 5 6M12 12C16 9 19 6 19 6M5 6C7 4 10 3 12 3C14 3 17 4 19 6"/></svg>  
+      </div>  
+      <h3>Bitki Besleme Danışmanlığı</h3>  
+      <p>Toprak ve yaprak analizleri doğrultusunda bitkisel üretiminiz için özel beslenme programları hazırlıyoruz.</p>  
+    </div>  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>  
+      </div>  
+      <h3>Toprak & Yaprak Analizi</h3>  
+      <p>Toprağınızın besin içeriğini ve bitkinin beslenme durumunu analiz ederek doğru gübre programı oluşturuyoruz.</p>  
+    </div>  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.5a4 4 0 01-4 4H6a4 4 0 010-8h.5A5.5 5.5 0 0117 7.5"/></svg>  
+      </div>  
+      <h3>Hastalık & Zararlı Teşhisi</h3>  
+      <p>Tarlanızdaki hastalık ve zararlı problemlerini uzmanlarımız tespit eder, en uygun zirai ilaç programını belirler.</p>  
+    </div>  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s-8-6.5-8-13a8 8 0 0116 0c0 6.5-8 13-8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>  
+      </div>  
+      <h3>Saha Ziyareti</h3>  
+      <p>Agronomistlerimiz tarlanızı bizzat ziyaret ederek gözlem yapar ve yerinde çözüm üretir.</p>  
+    </div>  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>  
+      </div>  
+      <h3>Sezon Takip Programı</h3>  
+      <p>Yetiştirme sezonu boyunca bitki gelişimini takip eder, gerekli müdahaleleri zamanında planlıyoruz.</p>  
+    </div>  
+    <div class="service-card">  
+      <div class="svc-icon">  
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>  
+      </div>  
+      <h3>Hızlı Ürün Teslimatı</h3>  
+      <p>Geniş stok kapasitemizle siparişlerinizi en kısa sürede hazırlıyor, Mersin ve çevresine ulaştırıyoruz.</p>  
+    </div>  
+  </div>  
+</section>  
+  
+<!-- **═══** NEDEN KARAAĞAÇ **═══** -->  
+<section class="why">  
+  <div class="why-inner">  
+    <div>  
+      <span class="section-tag">Neden Karaağaç?</span>  
+      <h2>Farkımızı<br/>Hissedeceksiniz</h2>  
+      <p class="section-desc" style="max-width:380px">  
+        Yılların deneyimi, bilimsel altyapı ve sahaya bağlı ekibimizle  
+        tarımınızı bir adım öteye taşımak için buradayız.  
+      </p>  
+      <a href="#iletisim" class="btn-primary" style="display:inline-block;margin-top:30px;background:#fff;color:var(--green-dark)">  
+        Hemen İletişime Geçin  
+      </a>  
+    </div>  
+    <div class="why-cards">  
+      <div class="why-card">  
+        <div class="why-num">01</div>  
+        <h4>Uzman Ekip</h4>  
+        <p>Ziraat mühendisi ve agronomistlerden oluşan deneyimli kadromuz.</p>  
+      </div>  
+      <div class="why-card">  
+        <div class="why-num">02</div>  
+        <h4>Analiz Tabanlı</h4>  
+        <p>Tahmin değil, bilimsel analiz sonuçlarına dayalı öneriler sunuyoruz.</p>  
+      </div>  
+      <div class="why-card">  
+        <div class="why-num">03</div>  
+        <h4>Yerel Bilgi</h4>  
+        <p>Mersin'in toprak ve iklim özelliklerini yakından tanıyoruz.</p>  
+      </div>  
+      <div class="why-card">  
+        <div class="why-num">04</div>  
+        <h4>Sürekli Destek</h4>  
+        <p>Satış sonrasında da yanınızdayız; sezon boyunca teknik destek sağlıyoruz.</p>  
+      </div>  
+    </div>  
+  </div>  
+</section>  
+  
+<!-- **═══** İLETİŞİM **═══** -->  
+<section class="contact" id="iletisim">  
+  <div class="contact-inner">  
+    <div>  
+      <span class="section-tag">İletişim</span>  
+      <h2>Bizimle<br/>İletişime Geçin</h2>  
+      <p class="section-desc">  
+        Ürün, fiyat veya teknik destek için bize ulaşın.  
+        Uzman ekibimiz en kısa sürede geri dönüş yapacaktır.  
+      </p>  
+      <div class="contact-info">  
+        <div class="contact-item">  
+          <div class="c-icon">  
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">  
+              <path d="M12 22s-8-6.5-8-13a8 8 0 0116 0c0 6.5-8 13-8 13z"/><circle cx="12" cy="9" r="2.5"/>  
+            </svg>  
+          </div>  
+          <div>  
+            <strong>Adres</strong>  
+            <span>Bahşiş, İnönü Blv. NO:68 C<br/>33100 Akdeniz / Mersin</span>  
+          </div>  
+        </div>  
+        <div class="contact-item">  
+          <div class="c-icon">  
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">  
+              <path d="M22 16.92V19a2 2 0 01-2.18 2A19.78 19.78 0 013 4.18 2 2 0 015 2h2.09a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>  
+            </svg>  
+          </div>  
+          <div>  
+            <strong>Telefon</strong>  
+            <span>Bizi arayın</span>  
+          </div>  
+        </div>  
+        <div class="contact-item">  
+          <div class="c-icon">  
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">  
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>  
+            </svg>  
+          </div>  
+          <div>  
+            <strong>E-posta</strong>  
+            <span>info@karaagactarim.com</span>  
+          </div>  
+        </div>  
+        <div class="contact-item">  
+          <div class="c-icon">  
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">  
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>  
+            </svg>  
+          </div>  
+          <div>  
+            <strong>Çalışma Saatleri</strong>  
+            <span>Pazartesi – Cumartesi: 08:00 – 18:00</span>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+    <div class="contact-form">  
+      <h3>Mesaj Gönderin</h3>  
+      <div class="form-row">  
+        <div class="form-group">  
+          <label>Ad Soyad</label>  
+          <input type="text" placeholder="Adınız"/>  
+        </div>  
+        <div class="form-group">  
+          <label>Telefon</label>  
+          <input type="tel" placeholder="0 5XX XXX XX XX"/>  
+        </div>  
+      </div>  
+      <div class="form-group">  
+        <label>E-posta</label>  
+        <input type="email" placeholder="ornek@mail.com"/>  
+      </div>  
+      <div class="form-group">  
+        <label>Konu</label>  
+        <select>  
+          <option value="">Konu seçin...</option>  
+          <option>Gübre & Bitki Besleme</option>  
+          <option>Zirai İlaç</option>  
+          <option>Teknik Danışmanlık</option>  
+          <option>Fiyat Bilgisi</option>  
+          <option>Diğer</option>  
+        </select>  
+      </div>  
+      <div class="form-group">  
+        <label>Mesajınız</label>  
+        <textarea placeholder="Mesajınızı buraya yazın..."></textarea>  
+      </div>  
+      <button class="form-submit">Mesaj Gönder</button>  
+    </div>  
+  </div>  
+</section>  
+  
+<!-- **═══** HARİTA **═══** -->  
+<div class="map-wrap">  
+  <iframe  
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3191.4605883773776!2d34.60883!3d36.7975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14274b2f3a4e3f9b%3A0x0!2zQmFow7Zpw7YsIMSwbsO2bsO8IEJsdi4gTk86NjggQywgMzMxMDAgQWtkZW5pei9NZXJzaW4!5e0!3m2!1str!2str!4v1715430000000!5m2!1str!2str"  
+    allowfullscreen="" loading="lazy">  
+  </iframe>  
+</div>  
+  
+<!-- **═══** FOOTER **═══** -->  
+<footer>  
+  <div class="footer-brand">  
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">  
+      <g stroke="#4e8a44" stroke-width="2.2" stroke-linecap="round">  
+        <line x1="50" y1="8"  x2="50" y2="2"/>  
+        <line x1="63" y1="11" x2="66" y2="5"/>  
+        <line x1="37" y1="11" x2="34" y2="5"/>  
+        <line x1="73" y1="19" x2="77" y2="14"/>  
+        <line x1="27" y1="19" x2="23" y2="14"/>  
+      </g>  
+      <path d="M28 38 A22 22 0 0 1 72 38Z" fill="#4e8a44"/>  
+      <line x1="18" y1="38" x2="82" y2="38" stroke="#4e8a44" stroke-width="2.2"/>  
+      <ellipse cx="20" cy="28" rx="5" ry="10" fill="#4e8a44"/>  
+      <path d="M10 45 Q30 38 50 42 Q70 46 90 40 L90 52 Q70 58 50 54 Q30 50 10 56Z" fill="#4e8a44"/>  
+      <path d="M10 54 Q35 48 60 54 Q75 58 90 52 L90 62 Q75 68 60 64 Q35 58 10 64Z" fill="#8c1f32" opacity=".8"/>  
+      <path d="M10 62 Q35 58 65 63 Q78 67 90 62 L90 70 Q78 75 65 71 Q35 66 10 72Z" fill="#8c1f32" opacity=".55"/>  
+    </svg>  
+    <div class="fb-text">  
+      <span class="fb1">Karaağaç Tarım</span>  
+      <span class="fb2">Gübre & Zirai İlaç Uzmanları – Mersin</span>  
+    </div>  
+  </div>  
+  <p>© 2025 Karaağaç Tarım. Tüm hakları saklıdır.<br/>  
+  Bahşiş, İnönü Blv. NO:68 C, 33100 Akdeniz / Mersin</p>  
+</footer>  
+  
+<script>  
+  function showTab(tab, btn) {  
+    // hide all panels  
+    document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));  
+    document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));  
+    // show selected  
+    document.getElementById('tab-' + tab).classList.add('active');  
+    btn.classList.add('active');  
+  }  
+</script>  
+  
+</body>  
+</html>  
